@@ -42,6 +42,7 @@
   </PropertyGroup>
   <ItemGroup>
      <Folder Include="Assets" />
+     <None Include="Assets/Resources/BillingMode.json" />
      <Folder Include="Assets/Scenes" />
      <Folder Include="Assets/Resources" />
      <Reference Include="UnityEngine">
