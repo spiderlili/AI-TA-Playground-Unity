@@ -42,9 +42,14 @@
   </PropertyGroup>
   <ItemGroup>
      <Folder Include="Assets" />
+     <Folder Include="Assets/AIArt/AvivOr_TDS_Illustrations" />
      <None Include="Assets/Resources/BillingMode.json" />
+     <Folder Include="Assets/Shaders" />
+     <Folder Include="Assets/AIArt" />
      <Folder Include="Assets/Scenes" />
+     <None Include="Assets/Shaders/Depth-Normal.shader" />
      <Folder Include="Assets/Resources" />
+     <Folder Include="Assets/Materials" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.3.20f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
      </Reference>
