@@ -46,9 +46,11 @@
      <None Include="Assets/Resources/BillingMode.json" />
      <Folder Include="Assets/Shaders" />
      <Folder Include="Assets/AIArt" />
+     <None Include="Assets/Shaders/Parallax-Sprites-Diffuse.shader" />
      <Folder Include="Assets/Scenes" />
-     <None Include="Assets/Shaders/Depth-Normal.shader" />
+     <None Include="Assets/Shaders/Normal-Map.shader" />
      <Folder Include="Assets/Resources" />
+     <None Include="Assets/Shaders/Depth-Map.shader" />
      <Folder Include="Assets/Materials" />
      <Reference Include="UnityEngine">
      <HintPath>/Applications/Unity/Hub/Editor/2021.3.20f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>

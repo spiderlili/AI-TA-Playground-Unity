@@ -179,3 +179,9 @@ AssetImportParameters requested are different than current active one (requested
   custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 28020.856988 seconds.
+  path: Assets/Materials/NormalMap.mat
+  artifactKey: Guid(6330a56c5c9b1465ca854bcb5318695b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Materials/NormalMap.mat using Guid(6330a56c5c9b1465ca854bcb5318695b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd45bc80c2c33fc4b00372a324a00b4e') in 1.255415 seconds 
