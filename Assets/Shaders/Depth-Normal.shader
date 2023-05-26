@@ -6,7 +6,7 @@ Shader "Custom/NormalMapShader" {
 		_BumpScale ("Bump Scale", Float) = 1.0
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
 		_Gloss ("Gloss", Range(8.0, 256)) = 20
-		_VisualiseNormals("Visualise Normals", Float) = 0
+		[Toggle(VISUALISE_NORMALS)]_VisualiseNormals("Visualise Normals", Float) = 0
 	}
 	SubShader {
 		Pass { 
@@ -18,6 +18,7 @@ Shader "Custom/NormalMapShader" {
 			#pragma fragment frag
 			
 			#include "Lighting.cginc"
+			#pragma shader_feature VISUALISE_NORMALS
 			
 			fixed4 _Color;
 			sampler2D _MainTex;
@@ -81,21 +82,17 @@ Shader "Custom/NormalMapShader" {
 				
 				fixed3 albedo = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
 				
-				fixed3 ambient = UNITY_LIGHTMODEL_AMBIENT.xyz * albedo;
-				
-				fixed3 diffuse = _LightColor0.rgb * albedo * max(0, dot(bump, lightDir));
+				fixed3 diffuse = albedo * max(0, dot(bump, lightDir));
 
 				fixed3 halfDir = normalize(lightDir + viewDir);
 				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(bump, halfDir)), _Gloss);
 
-				if(_VisualiseNormals)
-				{
-					return fixed4(ambient + diffuse + specular, 1.0);
-				}
-				else
-				{
+				#ifdef VISUALISE_NORMALS
+					return fixed4(diffuse + specular, 1.0);
+				#else
 					return fixed4(diffuse, 1.0);
-				}
+				#endif
+
 			}
 			
 			ENDCG
