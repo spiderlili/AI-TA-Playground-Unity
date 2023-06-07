@@ -50,6 +50,7 @@
      <Folder Include="Assets/Scenes" />
      <None Include="Assets/Shaders/Normal-Map.shader" />
      <Folder Include="Assets/Resources" />
+     <Folder Include="Assets/Animations" />
      <None Include="Assets/Shaders/Depth-Map.shader" />
      <Folder Include="Assets/Materials" />
      <Reference Include="UnityEngine">
