@@ -5,13 +5,13 @@ Shader "Custom/NormalMapShader" {
 		_BumpMap ("Normal Map", 2D) = "bump" {}
 		_BumpScale ("Bump Scale", Float) = 1.0
 		_Specular ("Specular", Color) = (1, 1, 1, 1)
-		_Gloss ("Gloss", Range(8.0, 256)) = 20
+		_Gloss ("Gloss", Range(8.0, 512)) = 20
 		[Toggle(VISUALISE_NORMALS)]_VisualiseNormals("Visualise Normals", Float) = 0
 	}
 	SubShader {
 		Pass { 
-			Tags { "LightMode"="ForwardBase" }
-		
+			Tags { "LightMode"="ForwardBase" "Queue" = "Transparent"}
+			Blend SrcAlpha OneMinusSrcAlpha // Traditional transparency
 			CGPROGRAM
 			
 			#pragma vertex vert
@@ -80,18 +80,22 @@ Shader "Custom/NormalMapShader" {
 				// Transform the narmal from tangent space to world space
 				bump = normalize(half3(dot(i.TtoW0.xyz, bump), dot(i.TtoW1.xyz, bump), dot(i.TtoW2.xyz, bump)));
 				
-				fixed3 albedo = tex2D(_MainTex, i.uv).rgb * _Color.rgb;
+				fixed4 albedo = tex2D(_MainTex, i.uv) * _Color;
 				
 				fixed3 diffuse = albedo * max(0, dot(bump, lightDir));
 
 				fixed3 halfDir = normalize(lightDir + viewDir);
-				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(bump, halfDir)), _Gloss);
+				fixed3 specular = _LightColor0.rgb * _Specular.rgb * pow(max(0, dot(bump, halfDir) * 0.5 + 0.5), _Gloss);
 
 				#ifdef VISUALISE_NORMALS
-					return fixed4(diffuse + specular, 1.0);
+					return fixed4(diffuse + specular, albedo.a);
 				#else
-					return fixed4(diffuse, 1.0);
+					return fixed4(diffuse, albedo.a);
 				#endif
+
+				
+				
+				
 
 			}
 			
