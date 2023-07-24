@@ -73,11 +73,10 @@ Shader "Custom/NormalMapShader" {
 				fixed3 lightDir = normalize(UnityWorldSpaceLightDir(worldPos));
 				fixed3 viewDir = normalize(UnityWorldSpaceViewDir(worldPos));
 				
-				// Get the normal in tangent space
+				// Get the normal in tangent space & transform the normal from tangent space to world space
 				fixed3 bump = UnpackNormal(tex2D(_BumpMap, i.uv.zw));
 				bump.xy *= _BumpScale;
 				bump.z = sqrt(1.0 - saturate(dot(bump.xy, bump.xy)));
-				// Transform the narmal from tangent space to world space
 				bump = normalize(half3(dot(i.TtoW0.xyz, bump), dot(i.TtoW1.xyz, bump), dot(i.TtoW2.xyz, bump)));
 				
 				fixed4 albedo = tex2D(_MainTex, i.uv) * _Color;
